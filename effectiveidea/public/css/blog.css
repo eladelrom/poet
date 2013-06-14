@@ -1,0 +1,181 @@
+/*
+    background-image: url(/images/white_leather.png);
+*/
+body {
+    color: #222222;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+    font-size: 18px;
+}
+
+p {
+    font-size: 18px;
+    color: #000000;
+    font-weight: 200;
+}
+
+h1 {
+    font-size: 50px;
+    font-family: 'La Belle Aurore', cursive;
+    margin: 10px;
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.visitors {
+    font-size: 5px;
+}
+
+.droppableDiv {
+    width: 260px;
+    height: 250px;
+}
+
+.h1 {
+    font-size: 20px;
+    margin: 20px;
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+
+.h2 {
+    font-size: 20px;
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 20px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.date {
+    display: block;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+}
+
+.tags {
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+}
+
+h2 {
+    font-size: 40px;
+    font-family: 'La Belle Aurore', cursive;
+    display: block;
+    font-size: 1.5em;
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 24px;
+    font-family: 'La Belle Aurore', cursive;
+
+    -webkit-margin-before: 0.3em;
+    -webkit-margin-after: 0.3em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    font-weight: bold;
+}
+
+.header {
+    color: #dddddd;
+    opacity: 0.9;
+    height: 100px;
+    background-image: url(/images/dark_leather.png);
+}
+
+a {
+    color: #ff0077;
+}
+
+a h1, a h2 {
+    color: #fff;
+}
+
+.header1_script {
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 30px;
+    float: left;
+    margin: 30px 0 0 20px;
+}
+
+.header1 {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 30px;
+    float: left;
+    margin: 20px 0 0 10px;
+}
+
+
+.header2 {
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 20px;
+    float: left;
+    font-size: 24px;
+    margin: 50px 0 0 30px;
+}
+
+.wrap {
+    z-index: 10;
+    margin-top: 500px;
+    width: 960px;
+    margin: 0 auto;
+}
+
+/*
+ *
+ * script
+ */
+pre {
+    color: #222;
+    font-family: monospace;
+    font-weight: 100;
+    font-size: 16px;
+    color:#fffdeb;
+    background-color: #333;
+    border-radius: 15px;
+    width: 800px;
+    margin: 0 auto;
+    padding: 15px 15px 15px 40px;
+}
+
+/*
+ *
+ * blog post content header
+ */
+.span8 {
+    padding-top: 120px;
+}
+
+.sidebar-nav {
+
+}
+
+.sidebar-nav-top {
+    padding-top: 120px;
+}
+
+ul.methods {
+    list-style: none;
+}
+
+ul.methods strong {
+    font-family: monospace;
+}

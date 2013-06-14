@@ -1,0 +1,62 @@
+!!!
+html
+  head
+    title= 'Elad Elrom blog'
+    script(src='/js/libs/jquery.min.js')
+    script(src='/js/libs/jquery-ui.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/js/enums/messagetype.js')
+    script(src='/js/socketcontroller.js')
+    script(src='/js/controller.js')
+    script(src='/js/model/vo/clientvo.js')
+    script(src='/js/libs/swfobject.js')
+
+    meta(charset='utf-8')
+    link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=La+Belle+Aurore')
+    link(rel='stylesheet', href='/css/bootstrap.css')
+    link(rel='stylesheet', href='/css/blog.css')
+    link(rel='stylesheet', href='/css/prettify.css')
+  body
+    .navbar.navbar-fixed-top
+      .navbar-inner
+        .header
+            .container
+                .wrap
+                    .header1_script {
+                    .header1 Effective Idea:
+                    .header2 Elad Elrom's blog }
+    .wrap
+      .container
+        .row
+          .span8
+            block content
+          .span4
+            .well.sidebar-nav.sidebar-nav-top
+              ul.nav.nav-list
+                li.nav-header categories
+                - each cat in categoryList
+                  li
+                    a(href=categoryUrl(cat)) #{cat}
+                li.nav-header tags
+                - each tag in tagList
+                  li
+                    a(href=tagUrl(tag)) #{tag}
+
+            .well.sidebar-nav
+                div#visitors
+
+            .well.droppableDiv Talk to others ~ Pickup/Drop pod
+
+            .footer
+                div#scrollblock
+
+        <div id="disqus_thread"></div>
+    </div>
+</footer>
+
+script(src='/js/libs/disqus.js')
+
+script(src='/js/libs/prettify.js')
+script
+    prettyPrint();
+cd view
