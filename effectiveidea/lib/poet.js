@@ -19,7 +19,7 @@ module.exports = function poet ( _app ) {
 
   options = {
     postsPerPage : 5,
-    posts        : './_posts/',
+    posts        : './effectiveidea/_posts/',
     metaFormat   : jsonFm,
     readMoreLink : function ( post ) {
       var anchor = '<a href="'+post.url+'" title="Read more of '+post.title+'">read more</a>';

@@ -30,7 +30,7 @@ Here are some of the feature list, real time communication and collaboration pla
 <br><br>
 Below is a ten thousand foot diagram that shows how the different pieces of the platform are coming together.
 <br><br>
-![roomjs diagram](https://raw.github.com/EladElrom/poet/master/public/images/roomsjs-diagram1.png)
+![roomjs diagram](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/roomsjs-diagram1.png)
 <br><br>
 *Diagram 1: 10 thousand foot diagram*
 
@@ -38,7 +38,7 @@ Demo
 ----
 Demo is on this actual blog :), you can see on the right corner the number of visitors on this page, since each page got registered and subscribed to messages and you can go on your webcam and talk to any person in this room.  Open the developer console to see the debugging messages (they are turned on).
 
-![console results](https://raw.github.com/EladElrom/poet/master/public/images/console-roomsjs.png)
+![console results](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/console-roomsjs.png)
 <br><br>
 *Diagram 2: showing console results from chrome*
 
@@ -57,7 +57,7 @@ See rooms.db connector companion module:
 roomjs
 ======
 
-![backend diagram](https://raw.github.com/EladElrom/poet/master/public/images/roomsjs-diagram2.png)
+![backend diagram](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/roomsjs-diagram2.png)
 <br><br>
 *Diagram 3: backend*
 
@@ -267,7 +267,7 @@ socket.on(messagetype.DISCONNECT, function(){
 
 rooms.db
 ========
-![rooms.db diagram](https://raw.github.com/EladElrom/poet/master/public/images/roomsjs-diagram5.png)
+![rooms.db diagram](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/roomsjs-diagram5.png)
 <br><br>
 *Diagram 4: rooms.db diagram*
 
@@ -381,7 +381,7 @@ And this is all that it takes.
 Web server
 ==========
 
-![rooms.db diagram](https://raw.github.com/EladElrom/poet/master/public/images/roomsjs-diagram2.png)
+![rooms.db diagram](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/roomsjs-diagram2.png)
 <br><br>
 *Diagram 5: web server diagram*
 
@@ -418,7 +418,7 @@ rooms.listenToRoomEvents(server,true,dbconnector);
 Front-end
 =========
 
-![rooms.db diagram](https://raw.github.com/EladElrom/poet/master/public/images/roomsjs-diagram3.png)
+![rooms.db diagram](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/roomsjs-diagram3.png)
 <br><br>
 *Diagram 6: front-end diagram*
 
