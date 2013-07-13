@@ -9,6 +9,8 @@ Author: [Elad Elrom](https://twitter.com/EladElrom)
 
 # nglue a lightweight architectural micro-framework for AngularJS
 
+![nglue logo](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/nglue-logo-small.jpg)
+
 `Angularjs` is all about creating re-usable modules and utilizing declarative templates with data-binding, MVW / MVVM / MVC, dependency injection architecture to help simplify building complex modules.  Angular have all that we need to build modules and scale, however the angular framework is not there to standardize how to glue these modules together to form an app and scale, so although the out of the box components can be scaled it's up to every developer to figure out how.
 Angular comes vanilla flavor so you can create your own implementation, however figuring out how to architecting a large scale Angular project is not as simple and many developers are facing with the same challenge.
 
