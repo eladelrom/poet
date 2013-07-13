@@ -9,7 +9,7 @@ Author: [Elad Elrom](https://twitter.com/EladElrom)
 
 # nglue a lightweight architectural micro-framework for AngularJS
 
-![nglue logo](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/nglue-logo-small.jpg)
+![nglue logo](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/nglue-logo.jpg)
 
 `Angularjs` is all about creating re-usable modules and utilizing declarative templates with data-binding, MVW / MVVM / MVC, dependency injection architecture to help simplify building complex modules.  Angular have all that we need to build modules and scale, however the angular framework is not there to standardize how to glue these modules together to form an app and scale, so although the out of the box components can be scaled it's up to every developer to figure out how.
 Angular comes vanilla flavor so you can create your own implementation, however figuring out how to architecting a large scale Angular project is not as simple and many developers are facing with the same challenge.
@@ -70,7 +70,9 @@ At the root directory we have two folder: `code_base` and `dist`.
 
 1. `code_base` - the folder the holds your code base with all the re-usable modules and apps, it includes the
 
+## Demonstration
 
+[![Demo](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/nglue-asciiio.jpg)](http://ascii.io/a/4165/)
 
 The first step is creating a re-usable modules, the idea is that you try and extract each piece of functionality as it's own entity
 and once each module works on it's own than you `glue` them together to form an app.  Than you deploy and finally you integrate into a site or as an application.
