@@ -2,7 +2,7 @@
     "title"    : "nglue",
     "tags"     : [ "nglue", "javascript", "angularjs", "angular" ],
     "category" : "nodejs",
-    "date"     : "6-17-2013"
+    "date"     : "7-17-2013"
 }}}
 
 Author: [Elad Elrom](https://twitter.com/EladElrom)
@@ -11,12 +11,19 @@ Author: [Elad Elrom](https://twitter.com/EladElrom)
 
 ![nglue logo](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/nglue-logo.jpg)
 
-`Angularjs` is all about creating re-usable modules and utilizing declarative templates with data-binding, MVW / MVVM / MVC, dependency injection architecture to help simplify building complex modules.  Angular have all that we need to build modules and scale, however the angular framework is not there to standardize how to glue these modules together to form an app and scale, so although the out of the box components can be scaled it's up to every developer to figure out how.
-Angular comes vanilla flavor so you can create your own implementation, however figuring out how to architecting a large scale Angular project is not as simple and many developers are facing with the same challenge.
+Angularjs original intention was all about creating re-usable modules and utilizing declarative templates with data-binding, using design patterns (MVW / MVVM / MVC), utilizing dependency injection architecture to help simplify building complex modules.  Angular have all that you need to build modules and scale, however the angular framework didn't standardize how to glue these modules together to form an app and scale, it's up to every developer to figure out how to scale a project.
+Figuring out how to architect a large scale Angular project is not a simple task as one would think and many developers are facing with the same challenge on how to scale.
+
+I have seen few projects and articles that attempted to solve the problem such as generator-angular, ng-boilerplate as well as few blog posts that addressing scaling large Angular project.
+
+1. (generator-angular)[https://github.com/yeoman/generator-angular] - is a generator to give you scaffolding for creating angular modules.
+2. ng-boilerplate - as the name suggest it's a boilerplate code for creating an angular project.
+
+Although the information is relevant and helpful on certain project, it doesn't fit all projects, since sometimes you are not looking to build a website and don't want and/or need a whole boilerplate overhead.  Using generator-angular helps creating an agular module but it falls short on glue few modules together.
 
 ## Architecture challenge
 
-Architecting your project is not an easy task since you need to take into account many things such as the size of the project, business requirement, team members and much more.  Than thinking about optimization adds another layer to the challenge, since adding any boilerplate code can increase the size of your project significantly and can result in large memory footprint, at the same time many times the project you’re working on will be handled by more than one developer.
+Architecting your project is not an easy task, since you need to take into account many things such as the size of the project, business requirement, team size and much more.  Than thinking about optimization adds another layer to the challenge, since adding any boilerplate code can increase the size of your project significantly and can result in large memory footprint, at the same time many times the project you’re working on will be handled by more than one developer.
 
 The angularjs framework is a library that provides architecture to an application. The framework library is built upon sets of components.  The component sets encapsulated the functionality that you can use and implement.
 Unknowingly you set architecture in your application just by using the component sets. These component sets are making explicit calls through their interfaces, which creates the functionality. This type of architecture is common and I am sure you heard the term before, inversion of control (IoC) and Dependency Injection (DI).
@@ -30,7 +37,9 @@ There are cases where you need structure to ensure your application can be scale
 
 nglue is nothing more than `Yeoman` generator with `grunt` tasks.  It's built to give you structure and tools for gluing re-usable angularjs modules into an app and help you deploy the app.
 
-An App includes few modules attached together and talking to each other.  An `app` can be anything; a page on a website, a mobile app or just combining two modules.  `nglue` holds the basics and meant to be simplify so you can suite the project to your exact needs. Additionally, it helps create structure to your large project so member of the team can dive in and start working and deploy quickly.
+In nglue an App is at least two modules glued together. Using nglue you can easily glue few modules together and have them communicate to each other.  An app can be anything; a page on a website, a mobile app or just combining two modules that needs to communicate and form a composition.
+
+nglue holds the basics and meant to be simplify so you can suite the project to your exact needs. Additionally, it helps create structure to your large project so member of the team can dive in quickly and start working on the project as well as deploy quickly.
 Deployment scripts helps take these modules from stand alone to glued app and than deployment.
 
 The benefit of loose coupling is that your code is changeable since the code isn’t dependent on one another. At the same time the tradeoff is that loosely coupled code increases complexity, and it's not immediately apparent what the code does when it's loosely coupled.
@@ -38,7 +47,7 @@ The Inversion of Control (IoC) and Dependency Injection.
 
 ## Why do you need the `nglue` Micro-architecture framework for Angular?
 
-`nglue` is lightweight architectural micro-framework it stands for the internal architecture of the processor.  It provides the skeleton, around the exact needs/features of your application.  In other words, nglue framework provides the starting point for you application’s architecture.
+`nglue` is nothing more than lightweight architectural micro-framework, it stands for the internal architecture of the processor.  It provides the skeleton, around the exact needs/features of your application.  In other words, nglue framework provides the starting point for you application’s architecture.
 
 Ideally programming is all about re-using your code, and in an ideal workflow you would ensure that any effort in creating modules is set in a way where you can re-use that code, update it easily or even share so other people can help contribute.
 Additionally, creating re-usable module, glue them together and distribute can help grow the team and outsource work without fear of integration.
@@ -68,7 +77,74 @@ Let's talk a quick walk through what was created for us.
 
 At the root directory we have two folder: `code_base` and `dist`.
 
-1. `code_base` - the folder the holds your code base with all the re-usable modules and apps, it includes the
+1. `code_base` - the folder the holds your code base with all the re-usable modules and apps as well as configuration files and deployment scripts.
+2. `dist` - holds an empty folder shell, where you can implement your own specific code to move from local build to deploy your scripts on a server (if needed).
+
+### Overall Directory Structure
+
+At a high level, the structure looks roughly like this:
+
+<pre>
+myproject/
+  |- code_base/
+  |  |  |- apps
+  |  |  |   |- myApp
+  |  |  |   |   |- assets
+  |  |  |   |   |- bower_components
+  |  |  |   |   |- components
+  |  |  |   |   |- images
+  |  |  |   |   |- styles
+  |  |  |   |   |   |- myApp-app-latest.css
+  |  |  |   |   |- views
+  |  |  |   |   |   |-myApp.html
+  |  |  |   |   |- index.html
+  |  |  |   |   |- nglue.json
+  |  |  |   |   |- scripts
+  |  |  |   |   |   |- app.js
+  |  |  |   |   |   |- controllers
+  |  |  |   |   |   |   |- myApp.js
+  |  |  |   |   |   |- directives
+  |  |  |   |   |   |- filters
+  |  |  |   |   |   |- services
+  |  |  |- assets/
+  |  |  |   |- bower_components
+  |  |  |   |- components
+  |  |  |   |- fonts
+  |  |  |   |- images
+  |  |  |   |- styles
+  |  |  |   |- nglue.json
+  |  |  |- dist
+  |  |  |- modules
+  |  |  |   |- myModule
+  |  |  |   |   |- assets/
+  |  |  |   |   |   |- bower_components
+  |  |  |   |   |   |- components
+  |  |  |   |   |   |- images
+  |  |  |   |   |   |- styles
+  |  |  |   |   |   |- views
+  |  |  |   |   |- heroModuleInterface.js
+  |  |  |   |   |- index.html
+  |  |  |   |   |- nglue.json
+  |  |  |   |   |- scripts/
+  |  |  |   |   |   |- app.js
+  |  |  |   |   |   |- controllers
+  |  |  |   |   |   |- directives
+  |  |  |   |   |   |- filters
+  |  |  |   |   |   |- services
+  |  |- assets/
+  |- dist/
+  |  |  |- <server deployment specific scripts>
+  |-.bowerrc
+  |-.editorconfig
+  |-.gitignore
+  |-.jshintrc
+  |-bower.json
+  |-Gruntfile.js
+  |-node_modules
+  |-package.json
+  |-README.md
+
+</pre>
 
 ## Demonstration
 
@@ -163,7 +239,5 @@ Here's an example of an app `nglue.config` file;
 }
 </pre>
 
-## License
-[MIT License](http://en.wikipedia.org/wiki/MIT_License)
-
-
+<br><br>
+In the next blog posts I will show you how to create an angular module using nglue and than an app.  I am also going to review how to deploy the code from local build to the server.
