@@ -1,27 +1,28 @@
 {{{
-    "title"    : "Create Angular nodejs Chat application in less than 2 minutes",
+    "title"    : "Create Angular nodejs Chat application in 5 minutes",
     "tags"     : [ "nodejs", "development" ],
     "category" : "nodejs",
     "date"     : "7-22-2013"
 }}}
 
 Author: [Elad Elrom](https://twitter.com/EladElrom)
-
+<br><br>
 For the past few months I have been working on tools to help development of real time communication and building Angularjs tools, however, I never showed an actual implementation example.
 
 Here's what I got in my toolbox:
 
-1. <b>Server</b> - for the server side I will be using roomsjs a realtime a nodejs module I created that let's you choose the transporter (socket.io, engine.io, sockjs).
+1. <b>Server</b> - for the server side I will be using https://github.com/eladelrom/roomsjs-client a realtime a nodejs module I created that let's you choose the transporter (socket.io, engine.io, sockjs).
 2. <b>Client</b> - for the front end I will be using Angularjs.
-3. <b>Tools</b> - I will be using nglue for generating scaffolding scripts and deployment.
+3. <b>Tools</b> - I will be using https://github.com/eladelrom/generator-nglue for generating scaffolding scripts and deployment.
 
 The final results looks like this:
 
 ![chat final](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/chat.png)
 
-## server side
+<h2>server side</h2>
 
 Let's start from the nodejs server side.  Roomsjs let's you utilize different transporters and create a room as well as subscribe to certain data and interact with database or any 3rd party data source.  I will start with installing roomsjs and roomsjs-db;
+<br>
 <br>
 <pre class="prettyprint">
 cd ~/dev
@@ -175,10 +176,12 @@ I choose to connect to Mongodb database but I can easily change this and connect
 <h3>start server</h3>
 
 Now we can start the server.
-
-> node server.js
-
-You should see the following:
+<br><br>
+<pre>
+node server.js
+</pre>
+<br>
+You should see the following message in the terminal:
 <br>
 <br>
 <pre class="prettyprint">
@@ -188,7 +191,7 @@ Listening on http://Elads-MacBook-Pro-3.local:8081
 </pre>
 Notice that `insertchatmessage` was mapped automatically for us.
 
-## Client side
+<h2>Client side</h2>
 
 For the front end I will be using Angularjs.  In order to create the project's scaffolding and initial projects scripts I will be using generator-nglue. Nglue is built to help you scale your project so let's say the chat room we are building is just a part of a larger application, we will be able to glue these modules together to form one app and have the modules communicate with each other.
 To create the project we will create the directory and start the nglue generator, see below;
@@ -236,6 +239,7 @@ Now we can write the actual angular module.  Generator-nglue helps us creating t
 > cd code_base/modules/chat/scripts
 </pre>
 inside of `code_base/modules/chat/scripts` we can find all the scripts we need to edit.  Let's start from app.js
+<br>
 <br>
 <h3>app.js</h3>
 <br>
@@ -305,11 +309,11 @@ Right before the body tag, we will define the global variables, that will point 
   var socketURL = 'ws://localhost:8081/',
     isDebugModeState = false;
 </pre>
-
+<br>
 <h3>chatModule partial</h3>
 
 We also need the html partial;
-
+<br>
 <br>
 <pre class="prettyprint">
 vim assets/views/chatModule.html
@@ -341,7 +345,7 @@ vim assets/views/chatModule.html
 </pre>
 
 <br>
-## css
+<h2>css</h2>
 
 Edit the css file
 <br>
