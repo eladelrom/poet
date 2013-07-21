@@ -157,6 +157,7 @@ function addVideoPlayer(clientId,isViewer) {
 }
 
 $(document).ready(function() {
+    topPositionVideoStart = $("#droppableDiv").height() + 680;
     listenToUserActions();
     connectUser();
 });

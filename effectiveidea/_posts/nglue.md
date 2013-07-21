@@ -11,6 +11,9 @@ Author: [Elad Elrom](https://twitter.com/EladElrom)
 
 ![nglue logo](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/nglue-logo.jpg)
 
+See it on github:
+[https://github.com/eladelrom/generator-nglue](https://github.com/eladelrom/generator-nglue)
+
 Angularjs original intention was all about creating re-usable modules and utilizing declarative templates with data-binding, using design patterns (MVW / MVVM / MVC), utilizing dependency injection architecture to help simplify building complex modules.  Angular have all that you need to build modules and scale, however the angular framework didn't standardize how to glue these modules together to form an app and scale, it's up to every developer to figure out how to scale a project.
 Figuring out how to architect a large scale Angular project is not a simple task as one would think and many developers are facing with the same challenge on how to scale.
 
