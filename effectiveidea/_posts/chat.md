@@ -8,26 +8,28 @@
 Author: [Elad Elrom](https://twitter.com/EladElrom)
 <br><br>
 For the past few months I have been working on tools to help development of real time communication and building Angularjs tools, however, I never showed an actual implementation example.
+In this blog post I will show you how to create a basic chat application based on these tools.
 
 Here's what I got in my toolbox:
 
-1. <b>Server</b> - for the server side I will be using https://github.com/eladelrom/roomsjs-client a realtime a nodejs module I created that let's you choose the transporter (socket.io, engine.io, sockjs).
+1. <b>Server</b> - for the server side I will be using https://github.com/eladelrom/roomsjs-client a realtime a nodejs module I created that let's you choose the transporter (socket.io, engine.io, or sockjs).
 2. <b>Client</b> - for the front end I will be using Angularjs.
 3. <b>Tools</b> - I will be using https://github.com/eladelrom/generator-nglue for generating scaffolding scripts and deployment.
 
-The final results looks like this:
+The final results wil looks like this:
 
 ![chat final](https://raw.github.com/EladElrom/poet/ei-pages/effectiveidea/public/images/chat.png)
 
 <h2>server side</h2>
 
-Let's start from the nodejs server side.  Roomsjs let's you utilize different transporters and create a room as well as subscribe to certain data and interact with database or any 3rd party data source.  I will start with installing roomsjs and roomsjs-db;
+Let's start from the nodejs server side.  <a href='https://github.com/eladelrom/roomsjs-client'>Roomsjs</a> let's you utilize different transporters and create a room as well as subscribe to certain data and interact with database or any 3rd party data source.  I will start with installing roomsjs and roomsjs-db.
+In command line create the project and install the npm modules, use the commands below;
 <br>
 <br>
 <pre class="prettyprint">
-cd ~/dev
-mkdir rooms && cd $_
-npm install roomsjs rooms.db mongoose express engine.io
+> cd ~/dev
+> mkdir rooms && cd $_
+> npm install roomsjs rooms.db mongoose express engine.io
 </pre>
 <br>
 Than create a `server.js` script;<br>
@@ -36,7 +38,7 @@ Than create a `server.js` script;<br>
 > vim server.js
 </pre>
 <br>
-For the node server.js file I am going to use the engine.io transporter.  Keep in mind that roomsjs allows you to connect to other transporters such as socket.io and sockjs.
+For the node entry file, server.js, I will be using <a href='https://github.com/LearnBoost/engine.io'>engine.io</a> transporter.  Keep in mind that `roomsjs` allows you to connect to other transporters such as socket.io and sockjs.  Engine.io is the high level API so it preferred to use that API instead of Socket.io.
 <br>
 <br>
 <pre class="prettyprint">
@@ -70,13 +72,13 @@ rooms = new rooms({
   roomdb : roomdb
 });
 </pre>
-
 <br>
-Next, we want to create a service that roomsdb can use, so we can insert any messages into our Mongodb database;
+Notice that we set our services folder directory as 'services/', we set the database to be MongoDB and the transporter to be 'engine.io'.
+Next, we want to create a service that roomsdb can use, so we can insert any messages into our Mongodb database and can insert as well as read these messages;
 <br>
 <pre class="prettyprint">
-mkdir services
-vim services/insertchatmessage.js
+> mkdir services
+> vim services/insertchatmessage.js
 </pre>
 <br>
 The code below, will create the service we need and once it's called it will create the schema, data model and insert the data into the database;
@@ -127,8 +129,7 @@ function insertchatmessage(data, dbconnectorCallBackToRooms) {
 module.exports.insertchatmessage = insertchatmessage;
 </pre>
 <br>
-
-We also need a service that will return all the existing message, getchatmessages.js;
+We also need a service that will return all the existing message, 'vim services/getchatmessages.js';
 <br><br>
 <pre class="prettyprint">
 function getchatmessages(data, dbconnectorCallBackToRooms) {
@@ -171,42 +172,45 @@ function getchatmessages(data, dbconnectorCallBackToRooms) {
 module.exports.getchatmessages = getchatmessages;
 </pre>
 <br>
-I choose to connect to Mongodb database but I can easily change this and connect to mysql database or any 3rd party API such as Amazon Services (CloudSearch) or any other data source.
+I choose to connect to the `Mongodb` database but I can easily change this and connect to mysql database or any 3rd party API such as Amazon Services (CloudSearch) or any other data source.
 
 <h3>start server</h3>
 
-Now we can start the server.
+Now we are ready to start the server.
 <br><br>
 <pre>
-node server.js
+> node server.js
 </pre>
 <br>
-You should see the following message in the terminal:
+Once you start the server you should see the following message in the terminal:
 <br>
 <br>
 <pre class="prettyprint">
 ~/dev/rooms $ node server.js
 adding service method: insertchatmessage
-Listening on http://Elads-MacBook-Pro-3.local:8081
+adding service method: getchatmessages
+Listening on http://[your-local-machine]:8081
 </pre>
-Notice that `insertchatmessage` was mapped automatically for us.
+Notice that `insertchatmessage` and `getchatmessages` was mapped automatically for us and the service is ready to be used.  We will be passing the information through engine.io, which is valuable since the best transporter will be used to pass the information such as long polling, Flash, WebScoket (based on whatever the client can handle).
 
 <h2>Client side</h2>
 
-For the front end I will be using Angularjs.  In order to create the project's scaffolding and initial projects scripts I will be using generator-nglue. Nglue is built to help you scale your project so let's say the chat room we are building is just a part of a larger application, we will be able to glue these modules together to form one app and have the modules communicate with each other.
-To create the project we will create the directory and start the nglue generator, see below;
+For the front end I will be using Angularjs.  Angularjs has a strong architecture and will help us to scale and turn our modules into a larger scale app if we ever need to.
+
+In order to create the project's scaffolding and initial projects scripts quickly I will be using <a href='https://github.com/eladelrom/generator-nglue'>generator-nglue</a>. Nglue was built to help you scale your project so let's say the chat room we are building is just a part of a larger application, we will be able to glue these modules together to form one app and have the modules communicate with each other.
+To create the project we will create the directory and start the `nglue` generator, see below;
 <br>
 <br>
 <pre class="prettyprint">
-cd ~/dev
-mkdir chatRoom && cd $_
-yo nglue
-What's your project's name?: chatRoom
+> cd ~/dev
+> mkdir chatRoom && cd $_
+> yo nglue
+> What's your project's name?: chatRoom
 </pre>
 <br>
 <h3>install bower dependencies</h3>
 
-Now that the scaffolding and project was created we can add the bower dependencies we need for our project;
+Now that the scaffolding and the project was created we can add the bower dependencies we need for our project;
 <br>
 We want to added the `roomsjs-client` dependency;
 <br><br>
@@ -232,19 +236,19 @@ Than add the dependencies to the dependencies json tag;
   }
 </pre>
 <br>
-Now we can write the actual angular module.  Generator-nglue helps us creating the scaffolding for the module
+Now we can write the actual angular module.  `Generator-nglue` can helps us create the scaffolding for the module
 <br><br>
 <pre class="prettyprint">
 > yo nglue:module chat
 > cd code_base/modules/chat/scripts
 </pre>
-inside of `code_base/modules/chat/scripts` we can find all the scripts we need to edit.  Let's start from app.js
+inside of `code_base/modules/chat/scripts` we can find all the scripts we need to edit.  Let's start from `app.js`
 <br>
 <br>
 <h3>app.js</h3>
 <br>
-In app.js we will define the module we will be using and than add `roomsGateway` as a module. `roomsGateway` as the name suggest will be our gateway to access roomsjs via the transporter we choose (engine.io);
-Notice that we don't hard code the socket url but we will define it whitin the app, so we can easily replace it when going to production;
+In `app.js` we will define the module we will be using and than add `roomsGateway` as a module we can use. `roomsGateway` as the name suggest will be our gateway to access roomsjs via the transporter we choose (engine.io);
+Notice that we don't hard code the socket url but we will define it within the app, so we can easily replace it when going to production;
 <br>
 <br>
 <pre class="prettyprint">
@@ -300,19 +304,20 @@ angular.module('chatModule')
 </pre>
 <br>
 <h3>index.html</h3>
-
-Right before the body tag, we will define the global variables, that will point to the server we will be using;
+Right before the body tag in the index file, we will define the global variables, that will point to the server we will be using;
 <br>
 <br>
 <pre class="prettyprint">
+&#60;script&#62;
   // declare global variable
   var socketURL = 'ws://localhost:8081/',
     isDebugModeState = false;
+&#60;/script&#62;
 </pre>
 <br>
 <h3>chatModule partial</h3>
 
-We also need the html partial;
+We also need the html partial that holds our simple minimalistic view of our application;
 <br>
 <br>
 <pre class="prettyprint">
@@ -347,10 +352,10 @@ vim assets/views/chatModule.html
 <br>
 <h2>css</h2>
 
-Edit the css file
+Edit the css file that nglue created for us with some basic css;
 <br>
 <pre>
-vim assets/styles/chatModule.css
+> vim assets/styles/chatModule.css
 </pre>
 <br>
 <pre class="prettyprint">
@@ -372,7 +377,7 @@ vim assets/styles/chatModule.css
 <br>
 <h3>Run</h3>
 
-Running grunt will concatenate, minify and build all the dependencies we created;
+We are ready to run grunt, which will do all the operation needed to complete the work by concatenate, minify and build all the dependencies we created;
 <br>
 <pre class="prettyprint">
 > grunt
